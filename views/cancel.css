@@ -1,0 +1,87 @@
+@import url("https://fonts.googleapis.com/css2?family=Jost:ital,wght@0,100..900;1,100..900&display=swap");
+* {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+  font-family: "Jost", sans-serif;
+}
+.cancel-container {
+  width: 100%;
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  background: linear-gradient(315deg,#7d0a48,#d98246,#7a592d);
+  background-size: 180% 180%;
+  animation: gradient-animation 18s ease infinite;
+}
+@keyframes gradient-animation {
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
+}
+.cancel-container #order-canceled {
+  font-size: 8rem;
+  margin: 2rem 0;
+  color: #DF2E38;
+}
+.cancel-container h1 {
+  font-size: 2.8rem;
+  margin-bottom: 1rem;
+  color: #DF2E38;
+}
+.cancel-container p {
+  max-width: 600px;
+  font-size: 1.6rem;
+  text-align: center;
+  margin: 0.5rem 0;
+  color: #DF2E38;
+  font-weight: 500;
+}
+.cancel-container .content-box {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 2rem;
+  background: #fafafa;
+  border-radius: 1.4rem;
+}
+.btn {
+  position: relative;
+  font-size: 1.7rem;
+  text-transform: uppercase;
+  text-decoration: none;
+  padding: 1rem 2.5em;
+  display: inline-block;
+  border-radius: 6em;
+  transition: all 0.2s;
+  border: none;
+  font-family: inherit;
+  font-weight: 500;
+  color: #fafafa;
+  background: #DF2E38;
+}
+.btn::after {
+  content: "";
+  display: inline-block;
+  height: 100%;
+  width: 100%;
+  border-radius: 100px;
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: -1;
+  transition: all 0.4s;
+}
+.btn:hover::after {
+  transform: scaleX(1.4) scaleY(1.6);
+  opacity: 0;
+}

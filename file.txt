@@ -1,0 +1,53 @@
+Using Modules
+
+// import express from 'express';
+// const app = express();
+
+// import path from 'path';
+
+// import dotenv from 'dotenv';
+// dotenv.config();
+
+// import stripe from 'stripe';
+
+
+// // const __dirname = path.dirname(new URL(import.meta.url).pathname);
+
+// const DOMAIN = process.env.DOMAIN;
+
+// app.use(express.static(path.join(__dirname, "views")));
+// app.use(express.json());
+
+// // app.get('/', async (req, res) => {
+// //     res.sendFile(path.join(__dirname, 'views', 'index.html'));
+// // });
+
+// app.post('/stripe-payment', async (req, res) => {
+//     const { product } = req.body;
+//     const session = await stripe.Checkout.SessionsResource.create({
+//         payment_method_types: ['card'],
+//         line_items: [
+//             {
+//                 price_data: {
+//                     currency: 'usd',
+//                     product_data: {
+//                         name: product.name,
+//                         images: [product.image],
+//                     },
+//                     unit_amount: product.amount * 100,
+//                 },
+//                 quantity: product.quantity,
+//             },
+//         ],
+//         mode: 'payment',
+//         success_url: `${DOMAIN}/success.html`,
+//         cancel_url: `${DOMAIN}/cancel.html`,
+//     });
+
+//     res.json({ id: session.id });
+// });
+
+// const PORT = process.env.PORT || 3000;
+// app.listen(PORT, () => {
+//     console.log(`Listening on ${PORT} port.`);
+// });

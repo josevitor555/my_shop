@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <link rel="stylesheet" href="./style.css">
+    <title>Checkout Payment</title>
+    <script src="https://js.stripe.com/v3/"></script>
+</head>
+<body>
+    <div class="container">
+        <div class="product">
+            <img src="https://th.bing.com/th/id/OIG4.Lq9CcVQqfcl0FWSWXto0?w=1024&h=1024&rs=1&pid=ImgDetMain" alt="Camiseta Foda" class="product_img">
+            <div class="description">
+                <h3> Camiseta Fodastica </h3>
+                <h4> &#8377 20.00 </h4>
+            </div>
+            <button type="button" id="buy-button">Pay Now</button>
+        </div>
+    </div>
+</body>
+<script type="text/javascript">
+    const stripe = Stripe(process.env.STRIPE_SECRET_KEY);
+    var checkoutButton = document.getElementById("btn");
+
+    checkoutButton.addEventListener("click", function () {
+        fetch("/stripe-payment", {
+            headers: { "Content-Type": "application/json" },
+            method: "POST",
+            body: JSON.stringify({
+                product: {
+                    name: "Camiseta Fodastica",
+                    image: "https://th.bing.com/th/id/OIG4.Lq9CcVQqfcl0FWSWXto0?w=1024&h=1024&rs=1&pid=ImgDetMain",
+                    amount: 100,
+                    quantity: 1,
+                },
+            }),
+        })
+        .then(function (response) {
+            return response.json();
+        })
+        .then(function (session) {
+            return stripe.redirectToCheckout({ sessionId: session.id });
+        })
+        .then(function (result) {
+            if (result.error) {
+                alert(result.error.message);
+            }
+        })
+        .catch(function (error) {
+            console.error("Error:", error);
+        });
+    });
+</script>
+</html>
